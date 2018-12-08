@@ -68,7 +68,7 @@ def get_long_or_default(request, name, default):
     val = None
     val_raw = request.GET.get(name, default)
     if val_raw is not None:
-        val = long(val_raw)
+        val = int(val_raw)
     return val
 
 
@@ -168,7 +168,7 @@ def get_data(request, data_name, conn=None, **kwargs):
                 dp = module.get_dataproviders(request, conn)
                 if data_name in dp:
                     data = module.get_data(request, data_name, conn)
-                    values = numpy.array(data.values())
+                    values = numpy.array(list(data.values()))
                     bins = 10
                     if NUMPY_GT_1_11_0:
                         # numpy.histogram() only supports bin calculation

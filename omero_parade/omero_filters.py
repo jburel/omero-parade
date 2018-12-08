@@ -40,7 +40,7 @@ def get_script(request, script_name, conn):
         objects = conn.getObjects('Image', opts={'dataset': dataset_id})
         img_ids = [i.id for i in objects]
     else:
-        img_ids = [long(i) for i in image_ids]
+        img_ids = [int(i) for i in image_ids]
     query_service = conn.getQueryService()
 
     if script_name == "ROI_count":
@@ -60,7 +60,7 @@ def get_script(request, script_name, conn):
             roi_counts[i] = 0
         for i in p:
             roi_counts[i[0].val] = i[1].val
-        values = roi_counts.values()
+        values = list(roi_counts.values())
         min_count = 0
         max_count = 0
         if len(values) > 0:

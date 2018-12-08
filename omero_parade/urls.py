@@ -18,7 +18,7 @@
 """Django urls."""
 
 from django.conf.urls import url, patterns
-import views
+from . import views
 
 
 urlpatterns = patterns(

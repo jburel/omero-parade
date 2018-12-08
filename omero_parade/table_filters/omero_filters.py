@@ -60,7 +60,7 @@ def get_script(request, script_name, conn):
         rows = table.getNumberOfRows()
 
         column_names = [col.name for col in headers]
-        col_data = table.read(range(len(headers)), 0, rows).columns
+        col_data = table.read(list(range(len(headers))), 0, rows).columns
 
         table_data = {}
         minima = {}
